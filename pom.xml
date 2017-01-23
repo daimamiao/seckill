@@ -144,6 +144,6 @@
     </dependencies>
 
     <build>
-        <finalName>ssm</finalName>
+        <finalName>seckill</finalName>
     </build>
 </project>
