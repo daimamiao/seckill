@@ -15,20 +15,26 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-    
+
+    <!-- 配置DispatcherServlet -->
     <servlet>
-        <servlet-name>springmvc</servlet-name>
+        <servlet-name>dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <!-- 配置springMVC需要加载的配置文件
+            spring-dao.xml, spring-service.xml, spring-web.xml
+            MyBatis -> spring -> springMVC
+        -->
         <!-- DispatcherServlet对应的上下文配置，默认为/WEB-INF/${servlet-name}-servlet.xml -->
+
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>/WEB-INF/spring/springmvc.xml</param-value>
+            <param-value>classpath:spring/spring-*.xml</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
-        <servlet-name>springmvc</servlet-name>
-        <!-- springmvc拦截所有的请求 -->
+        <servlet-name>dispatcher</servlet-name>
+        <!-- springmvc拦截所有的request,即配置所有的request -->
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 </web-app>
