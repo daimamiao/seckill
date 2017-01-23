@@ -6,8 +6,8 @@
 <mapper namespace="com.daimamiao.seckill.dao.SuccessKilledDao">
     <insert id="insertSuccessKilled">
         <!-- 主键冲突，忽略报错(ignore)，只返回0 -->
-        INSERT ignore INTO success_killed(seckill_id, user_phone)
-        values (#{seckillId}, #{userPhone})
+        INSERT ignore INTO success_killed(seckill_id, user_phone, state)
+        values (#{seckillId}, #{userPhone}, 0)
     </insert>
     <select id="queryByIdWithSeckill" resultType="SuccessKilled">
         <!-- 根据id查询SuccessKilled并携带秒杀产品对象实体 -->
@@ -25,6 +25,6 @@
           s.create_time "seckill.create_time"
         FROM success_killed sk
         INNER JOIN seckill s on sk.seckill_id = s.seckill_id
-        WHERE sk.seckill_id = #{seckillId}
+        WHERE sk.seckill_id = #{seckillId} AND sk.user_phone = #{userPhone}
     </select>
 </mapper>
